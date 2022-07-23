@@ -1,10 +1,32 @@
-//WHILE round is not 5
+let computerScore = 0; //Global scope is required, function scope doesn't pass on by invoking
+let userScore = 0;
 
-//track score
-//go to next round
+console.log(playGame());
 
-//ELSE
-//Announce winner and score
+
+function playGame()
+{
+    //WHILE round is not 5
+    //go to next round
+    for (let i = 0; i < 5; i++)
+    {
+        console.log(playRound(computerSelection(), userSelection()));
+    }
+
+    //ELSE
+    //Announce winner and score
+    switch (computerScore >= userScore)
+    {
+        case true:
+            return `You didn't beat the computer, Computer wins the game!
+            Your score: ${userScore}
+            Computer's Score: ${computerScore}`;
+        case false:
+            return `You beat the computer, You win the game!
+            Your score: ${userScore}
+            Computer's Score: ${computerScore}`;
+    }
+}
 
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
 function computerSelection()
@@ -46,25 +68,28 @@ function playRound(computer, user)
     {
         return "It's a tie"
     }
-    //check for computer win
-     //announce round winner
+    //check for winner
+    //track score
+    //announce round winner
     else if (computer === "scissors" && user === "paper")
     {
+        computerScore++;
         return `Computer wins, ${computer} beats ${user}`
     }
     else if (computer === "rock" && user === "scissors")
     {
+        computerScore++;
         return `Computer wins, ${computer} beats ${user}`
     }
     else if (computer === "paper" && user === "rock")
     {
+        computerScore++;
         return `Computer wins, ${computer} beats ${user}`
     }
     //if it's not a tie and the computer didn't win, the user wins
     else
     {
+        userScore++;
         return `You win, ${user} beats ${computer}`
     }
 }
-
-console.log(playRound(computerSelection(), userSelection()))
