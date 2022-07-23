@@ -25,9 +25,17 @@ function computerSelection()
 //get user selection
 function userSelection()
 {
-    let userSelection = prompt("Please choose Rock, Paper or Scissors");
+    let userSelection;
 
-    return userSelection.toLocaleLowerCase();
+    //reject invalid inputs
+    do
+    {
+        userSelection = prompt("Please choose Rock, Paper or Scissors");
+        userSelection = userSelection.toLowerCase();
+
+    } while(userSelection != "rock" && userSelection != "paper" && userSelection != "scissors")
+
+    return userSelection;
 }
 
 //compare user selection and computer selection
@@ -39,6 +47,7 @@ function playRound(computer, user)
         return "It's a tie"
     }
     //check for computer win
+     //announce round winner
     else if (computer === "scissors" && user === "paper")
     {
         return `Computer wins, ${computer} beats ${user}`
@@ -59,4 +68,3 @@ function playRound(computer, user)
 }
 
 console.log(playRound(computerSelection(), userSelection()))
-//announce round winner
