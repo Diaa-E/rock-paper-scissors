@@ -9,9 +9,9 @@
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
 function computerSelection()
 {
-    let selection = Math.floor(Math.random()*3 + 1);
+    let computerSelection = Math.floor(Math.random()*3 + 1);
 
-    switch (selection)
+    switch (computerSelection)
     {
         case 1:
             return "rock";
@@ -21,5 +21,14 @@ function computerSelection()
             return "scissors";
     }
 }
-//sompare user selection and computer selection
+
+//get user selection
+function userSelection()
+{
+    let userSelection = prompt("Please choose Rock, Paper or Scissors");
+
+    return userSelection.toLowerCase();
+}
+
+//compare user selection and computer selection
 //announce round winner
