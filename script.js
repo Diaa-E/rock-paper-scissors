@@ -1,35 +1,16 @@
 let computerScore = 0; //Global scope is required, function scope doesn't pass on by invoking
 let userScore = 0;
 
-console.log(playGame());
+const buttons = document.querySelectorAll('button');
 
-
-function playGame()
-{
-    //WHILE round is not 5
-    //go to next round
-    for (let i = 0; i < 5; i++)
-    {
-        console.log(playRound(computerSelection(), userSelection()));
-    }
-
-    //ELSE
-    //Announce winner and score
-    switch (computerScore >= userScore)
-    {
-        case true:
-            return `You didn't beat the computer, Computer wins the game!
-            Your score: ${userScore}
-            Computer's Score: ${computerScore}`;
-        case false:
-            return `You beat the computer, You win the game!
-            Your score: ${userScore}
-            Computer's Score: ${computerScore}`;
-    }
-}
+buttons.forEach(button => button.addEventListener('click', (e) => {
+    
+    console.log(playRound(getComputerMove(), e.target.innerText.toLowerCase()))
+    //console.log(e.target.innerText);
+}));
 
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
-function computerSelection()
+function getComputerMove()
 {
     let computerSelection = Math.floor(Math.random()*3 + 1);
 
