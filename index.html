@@ -6,16 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="button-container">
-        <button id="rock">Rock</button>
-        <button id="paper">Paper</button>
-        <button id="scissors">Scissors</button>
+    <div class="main-container">
+
+        <img class="user-move" src="./images/rockUser.png" alt="Your move">
+
+        <div class="button-container">
+            <button class="button" id="rock">Rock</button>
+            <button class="button" id="paper">Paper</button>
+            <button class="button" id="scissors">Scissors</button>
+        </div>
+        
+        <div class="result" id="results">
+            
+        </div>
+
     </div>
 
-    <div id="results">
-
-    </div>
+    <img class="computer-move" src="./images/rockComp.png" alt="Computer's move">
 </body>
 </html>
