@@ -1,5 +1,6 @@
 let computerScore = 0; //Global scope is required, function scope doesn't pass on by invoking
 let userScore = 0;
+let winScore = 5;
 
 const buttons = document.querySelectorAll('button');
 const resultBoard = document.querySelector('#results');
@@ -7,8 +8,22 @@ const resultBoard = document.querySelector('#results');
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
     playRound(getComputerMove(),getUserMove(e), resultBoard);
+    checkForWinner(resultBoard);
 }));
 
+function checkForWinner(resultBoard)
+{
+    if (userScore === winScore)
+    {
+        resultBoard.innerText = `You win the game by ${winScore} to ${computerScore}`
+        return;
+    }
+    else if (computerScore === winScore)
+    {
+        resultBoard.innerText = `Computer wins the game by ${winScore} to ${userScore}`
+        return;
+    }
+}
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
 function getComputerMove()
 {
@@ -36,6 +51,12 @@ function getUserMove(e)
 //compare user selection and computer selection
 function playRound(computer, user, resultBoard)
 {
+    //start a new game if someone has already reached 5 wins
+    if (computerScore === winScore || userScore === winScore)
+    {
+        computerScore = 0;
+        userScore = 0;
+    }
     //check for tie first
     if (computer === user)
     {
