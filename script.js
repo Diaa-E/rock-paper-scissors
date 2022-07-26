@@ -4,10 +4,12 @@ let winScore = 5;
 
 const buttons = document.querySelectorAll('button');
 const resultBoard = document.querySelector('#results');
+const computerMove = document.querySelector(".computer-move");
+const userMove = document.querySelector(".user-move");
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
-    playRound(getComputerMove(),getUserMove(e), resultBoard);
+    playRound(getComputerMove(computerMove),getUserMove(e), resultBoard);
     checkForWinner(resultBoard);
 }));
 
@@ -25,17 +27,20 @@ function checkForWinner(resultBoard)
     }
 }
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
-function getComputerMove()
+function getComputerMove(computerMove)
 {
     let computerSelection = Math.floor(Math.random()*3 + 1);
 
     switch (computerSelection)
     {
         case 1:
+            computerMove.setAttribute('src', './images/rockComp.png')
             return "rock";
         case 2:
+            computerMove.setAttribute('src', './images/paperComp.png')
             return "paper";
         case 3:
+            computerMove.setAttribute('src', './images/scissorsComp.png')
             return "scissors";
     }
 }
