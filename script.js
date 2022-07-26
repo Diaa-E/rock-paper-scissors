@@ -5,8 +5,7 @@ const buttons = document.querySelectorAll('button');
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
-    console.log(playRound(getComputerMove(), e.target.innerText.toLowerCase()))
-    //console.log(e.target.innerText);
+    console.log(playRound(getComputerMove(),getUserMove(e)))
 }));
 
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
@@ -26,18 +25,10 @@ function getComputerMove()
 }
 
 //get user selection
-function userSelection()
+function getUserMove(e)
 {
-    let userSelection;
-
-    //reject invalid inputs
-    do
-    {
-        userSelection = prompt("Please choose Rock, Paper or Scissors");
-        userSelection = userSelection.toLowerCase();
-
-    } while(userSelection != "rock" && userSelection != "paper" && userSelection != "scissors")
-
+    //get text from the event target
+    let userSelection = e.target.innerText.toLowerCase();
     return userSelection;
 }
 
