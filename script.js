@@ -2,10 +2,11 @@ let computerScore = 0; //Global scope is required, function scope doesn't pass o
 let userScore = 0;
 
 const buttons = document.querySelectorAll('button');
+const resultBoard = document.querySelector('#results');
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
-    console.log(playRound(getComputerMove(),getUserMove(e)))
+    playRound(getComputerMove(),getUserMove(e), resultBoard);
 }));
 
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
@@ -33,12 +34,14 @@ function getUserMove(e)
 }
 
 //compare user selection and computer selection
-function playRound(computer, user)
+function playRound(computer, user, resultBoard)
 {
     //check for tie first
     if (computer === user)
     {
-        return "It's a tie"
+        resultBoard.innerText = `It's a tie!
+            Computer: ${computerScore} \n You: ${userScore}`
+        return;
     }
     //check for winner
     //track score
@@ -46,22 +49,30 @@ function playRound(computer, user)
     else if (computer === "scissors" && user === "paper")
     {
         computerScore++;
-        return `Computer wins, ${computer} beats ${user}`
+        resultBoard.innerText = `Computer wins the round! ${computer} beats ${user}
+            Computer: ${computerScore} \n You: ${userScore}`;
+        return;
     }
     else if (computer === "rock" && user === "scissors")
     {
         computerScore++;
-        return `Computer wins, ${computer} beats ${user}`
+        resultBoard.innerText = `Computer wins the round! ${computer} beats ${user}
+            Computer: ${computerScore} \n You: ${userScore}`;
+        return;
     }
     else if (computer === "paper" && user === "rock")
     {
         computerScore++;
-        return `Computer wins, ${computer} beats ${user}`
+        resultBoard.innerText = `Computer wins the round! ${computer} beats ${user}
+            Computer: ${computerScore} \n You: ${userScore}`;
+        return;
     }
     //if it's not a tie and the computer didn't win, the user wins
     else
     {
         userScore++;
-        return `You win, ${user} beats ${computer}`
+        resultBoard.innerText = `You win the round! ${user} beats ${computer}
+            Computer: ${computerScore} \n You: ${userScore}`;
+        return;
     }
 }
