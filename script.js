@@ -9,7 +9,7 @@ const userMove = document.querySelector(".user-move");
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
-    playRound(getComputerMove(computerMove),getUserMove(e), resultBoard);
+    playRound(getComputerMove(computerMove),getUserMove(e, userMove), resultBoard);
     checkForWinner(resultBoard);
 }));
 
@@ -34,22 +34,36 @@ function getComputerMove(computerMove)
     switch (computerSelection)
     {
         case 1:
-            computerMove.setAttribute('src', './images/rockComp.png')
+            computerMove.setAttribute('src', './images/rockComp.png');
             return "rock";
         case 2:
-            computerMove.setAttribute('src', './images/paperComp.png')
+            computerMove.setAttribute('src', './images/paperComp.png');
             return "paper";
         case 3:
-            computerMove.setAttribute('src', './images/scissorsComp.png')
+            computerMove.setAttribute('src', './images/scissorsComp.png');
             return "scissors";
     }
 }
 
 //get user selection
-function getUserMove(e)
+function getUserMove(e, userMove)
 {
     //get text from the event target
     let userSelection = e.target.innerText.toLowerCase();
+
+    switch (userSelection)
+    {
+        case "rock":
+            userMove.setAttribute('src', './images/rockUser.png');
+            break;
+        case "paper":
+            userMove.setAttribute('src', './images/paperUser.png');
+            break;
+        case "scissors":
+            userMove.setAttribute('src', './images/scissorsUser.png');
+        
+    }
+    
     return userSelection;
 }
 
