@@ -1,6 +1,16 @@
 let computerScore = 0; //Global scope is required, function scope doesn't pass on by invoking
 let userScore = 0;
 let winScore = 5;
+const computerMoveVisual =[
+    './images/rockComp.png',
+    './images/paperComp.png',
+    './images/scissorsComp.png'
+]
+const userMoveVisual =[
+    './images/rockUser.png',
+    './images/paperUser.png',
+    './images/scissorsUser.png'
+]
 
 const buttons = document.querySelectorAll('button');
 const resultBoard = document.querySelector('#results');
@@ -9,7 +19,7 @@ const userMove = document.querySelector(".user-move");
 
 buttons.forEach(button => button.addEventListener('click', (e) => {
     
-    playRound(getComputerMove(computerMove),getUserMove(e, userMove), resultBoard);
+    playRound(getComputerMove(computerMove, computerMoveVisual),getUserMove(e, userMove, userMoveVisual), resultBoard);
     checkForWinner(resultBoard);
 }));
 
@@ -27,26 +37,26 @@ function checkForWinner(resultBoard)
     }
 }
 //generate random number from 1 to 3 (inclusive) for rock, paper and scissors
-function getComputerMove(computerMove)
+function getComputerMove(computerMove, computerMoveVisual)
 {
     let computerSelection = Math.floor(Math.random()*3 + 1);
 
     switch (computerSelection)
     {
         case 1:
-            computerMove.setAttribute('src', './images/rockComp.png');
+            computerMove.setAttribute('src', computerMoveVisual[computerSelection - 1]);
             return "rock";
         case 2:
-            computerMove.setAttribute('src', './images/paperComp.png');
+            computerMove.setAttribute('src', computerMoveVisual[computerSelection - 1]);
             return "paper";
         case 3:
-            computerMove.setAttribute('src', './images/scissorsComp.png');
+            computerMove.setAttribute('src', computerMoveVisual[computerSelection - 1]);
             return "scissors";
     }
 }
 
 //get user selection
-function getUserMove(e, userMove)
+function getUserMove(e, userMove, userMoveVisual)
 {
     //get text from the event target
     let userSelection = e.target.innerText.toLowerCase();
@@ -54,13 +64,13 @@ function getUserMove(e, userMove)
     switch (userSelection)
     {
         case "rock":
-            userMove.setAttribute('src', './images/rockUser.png');
+            userMove.setAttribute('src', userMoveVisual[0]);
             break;
         case "paper":
-            userMove.setAttribute('src', './images/paperUser.png');
+            userMove.setAttribute('src', userMoveVisual[1]);
             break;
         case "scissors":
-            userMove.setAttribute('src', './images/scissorsUser.png');
+            userMove.setAttribute('src', userMoveVisual[2]);
         
     }
     
